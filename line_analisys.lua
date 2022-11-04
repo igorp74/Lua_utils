@@ -107,4 +107,23 @@ function line_analysis(sel)
     print(only_unique)
 end
 
-line_analysis(arg[1])
+
+-- Kate use one single argument in call with this function,
+-- but it could be variable size of arguments since selection could be multi-word or/and multi-line,
+-- so I need to prepare selected text from editor to fit into one, single argument for this function.
+
+-- Will join all arguments into one string
+
+args = ""
+i = 1
+
+while arg[i] do
+    if i == 1 then
+        args = arg[i]
+    else
+        args = args..' '..arg[i]
+    end
+    i = i + 1
+end
+
+line_analysis(args)

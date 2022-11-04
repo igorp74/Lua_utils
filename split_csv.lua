@@ -12,18 +12,22 @@ function split_csv(sel)
     return(text)
 end
 
+
+-- Kate use one single argument in call with this function,
+-- but it could be variable size of arguments since selection could be multi-word or/and multi-line,
+-- so I need to prepare selected text from editor to fit into one, single argument for this function.
+
+-- Will join all arguments into one string
+
 args = ""
-
--- Since KDE Kate pass all selected text as a multiple arguments splitted by comma,
--- i first need to concatenate all bits of arguments into one single string.
--- Then I can use the prepared function, modified from SciTE.
-
--- TODO: Improve intelligence and recognize single quotes, so I can leave commas inside single quotes untached.
--- NOTE: Check would that be usefull ?
-
 i = 1
+
 while arg[i] do
-    args = args..arg[i]
+    if i == 1 then
+        args = arg[i]
+    else
+        args = args..' '..arg[i]
+    end
     i = i + 1
 end
 
