@@ -38,8 +38,14 @@ function transpose_2_line(sel)
                 res[#res+1] = v
             else
                 ch_s  = v:sub(1,1)
-                ch_e  = v:sub(-1,-1)
+                if v:len() == 1 then
+                    ch_e  = ''
+                else
+                    ch_e  = v:sub(-1,-1)
+                end
                 str_m = v:sub(2,v:len()-1)
+
+                print(ch_s, ch_e, str_m)
 
                 local str_res = ''
                 local cn = 0
