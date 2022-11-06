@@ -45,8 +45,6 @@ function transpose_2_line(sel)
                 end
                 str_m = v:sub(2,v:len()-1)
 
-                print(ch_s, ch_e, str_m)
-
                 local str_res = ''
                 local cn = 0
 
