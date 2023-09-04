@@ -7,7 +7,7 @@ end
 function split_csv(sel)
     local pat = "[^,']*"  -- everything except commas
     local tbl = {}
-    -- TODO     Check why I do not get the single quotes back ?
+    -- TODO     Check why I did not get the single quotes back ?
     --                 at this point, it almost seems lika a feature, not a bug :)
     -- FIXME    but, what if I have some text in quotes...
     sel:gsub(pat, function(x) tbl[#tbl+1]=trim(x)..'\n' end)
