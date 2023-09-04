@@ -48,7 +48,9 @@ function line_analysis(sel)
     local hash2 = {}
     local res   = {}
     local dup   = {}
-
+    local tlc   = 0 -- total line counter
+    local dlc   = 0 -- duplicates line counter
+    
     if #sel == 0 then return end
 
     local eol = string.match(sel, "\n$")
@@ -64,6 +66,8 @@ function line_analysis(sel)
                 hash2[v] = true
             end
         end
+        -- Store overall line count
+        tlc = k
     end
 
     local res_cn = {}
@@ -76,6 +80,8 @@ function line_analysis(sel)
                 res_cn[y]=dc
             end
         end
+        -- Store duplicates line count
+        dlc = x
     end
 
     local unq = tbl_diff(res, dup)
@@ -92,17 +98,17 @@ function line_analysis(sel)
     if eol then duplicates = duplicates.."\n" end
     if eol then only_unique = only_unique.."\n" end
 
-    print('⚙️ UNIQUE LINES')
+    print('⚙️ UNIQUE LINES: '..tostring(tlc))
     print('--------------------')
     print(all_unique)
-    print('\n⚖ DUPLICATE LINES')
+    print('\n⚖ DUPLICATE LINES: '..tostring(dlc))
     print('--------------------------')
     print(duplicates)
     print('~~~~~~~~~~~~~~')
     for key,value in pairsByKeys(res_cn) do
         print(tostring(key) .. "\t\t(" .. tostring(value) .. ")")
     end
-    print('\n👍 NO DUPLICATES')
+    print('\n👍 GENUINELY UNIQUE: '..tostring(tlc-dlc))
     print('----------------------------')
     print(only_unique)
 end
