@@ -1,5 +1,4 @@
 -- SciTE Lua script adaptation for KDE Kate
--- IgorP 2024-07-21 23:41:01
 
 -- 🚀 [Collect lines]
 function lines(str)
